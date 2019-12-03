@@ -1,0 +1,31 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Create an app to check the weather for different cities",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "server": "webpack-dev-server --open-page 'dist/'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/efrapp/weather-app.git"
+  },
+  "author": "Efrain Pinto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/efrapp/weather-app/issues"
+  },
+  "homepage": "https://github.com/efrapp/weather-app#readme"
+}
