@@ -1,4 +1,4 @@
-import { GoogleMapsLoader } from 'google-maps';
+import GoogleMapsLoader from 'google-maps';
 
 GoogleMapsLoader.KEY = 'AIzaSyAftKNejbtH4H5BXH0-Tee8JmdgIMZDP1Q';
 GoogleMapsLoader.LIBRARIES = ['places'];
