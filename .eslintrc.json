@@ -15,6 +15,9 @@
         "ecmaVersion": 8,
         "sourceType": "module"
     },
+    "settings": {
+        "import/core-modules": ["google-maps"]
+    },
     "rules": {
     }
 }

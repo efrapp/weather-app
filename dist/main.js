@@ -114,15 +114,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var google_maps__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(google_maps__WEBPACK_IMPORTED_MODULE_0__);
 
 
-google_maps__WEBPACK_IMPORTED_MODULE_0___default.a.KEY = 'AIzaSyAftKNejbtH4H5BXH0-Tee8JmdgIMZDP1Q';
-google_maps__WEBPACK_IMPORTED_MODULE_0___default.a.LIBRARIES = ['places'];
+google_maps__WEBPACK_IMPORTED_MODULE_0__["GoogleMapsLoader"].KEY = 'AIzaSyAftKNejbtH4H5BXH0-Tee8JmdgIMZDP1Q';
+google_maps__WEBPACK_IMPORTED_MODULE_0__["GoogleMapsLoader"].LIBRARIES = ['places'];
 
 function PlacesService() {}
 
 PlacesService.prototype.getCityUrl = async function getCityUrl(coord) {
   const { lat, lng } = coord;
   const imgUrlPromise = new Promise((resolve, reject) => {
-    google_maps__WEBPACK_IMPORTED_MODULE_0___default.a.load((google) => {
+    google_maps__WEBPACK_IMPORTED_MODULE_0__["GoogleMapsLoader"].load((google) => {
       const city = { lat, lng };
 
       const map = new google.maps.Map(document.getElementById('map'), {
