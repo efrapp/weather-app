@@ -91,17 +91,25 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_places_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _js_weather_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 
 
-const imgUrlPms = _js_places_service__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.getCityUrl({ lat: 3.451952, lng: -76.530210 });
-imgUrlPms.then((imgUrl) => {
-  const bgImage = document.getElementById('bg-image');
-  bgImage.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${imgUrl}')`;
-})
+
+const weatherPromise = _js_weather_service__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.getInfo('Barranquilla');
+
+weatherPromise.then((weatherInfo) => weatherInfo)
+  .then((weatherInfo) => {
+    const imgUrlPms = _js_places_service__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.getCityUrl({
+      lat: weatherInfo.coord.lat,
+      lng: weatherInfo.coord.lon,
+    });
+    return imgUrlPms;
+  })
+  .then((imgUrl) => {
+    const bgImage = document.getElementById('bg-image');
+    bgImage.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${imgUrl}')`;
+  })
   .catch(alert);
-document.addEventListener('DOMContentLoaded', () => {
-  // PlacesService.prototype.getCityImage('Medellin');
-});
 
 
 /***/ }),
@@ -384,6 +392,31 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root
 	return GoogleMapsLoader;
 
 });
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function WeatherService() {}
+
+const API_KEY = 'd00af94a1ef0884960da78605292d459';
+
+WeatherService.prototype.getInfo = async function getInfo(city) {
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+
+  const response = await fetch(url, { mode: 'cors' });
+  const info = await response.json();
+
+  if (info.cod !== 200) {
+    throw new Error(info.message);
+  }
+  return info;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (WeatherService);
 
 
 /***/ })
