@@ -133,6 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 
 google_maps__WEBPACK_IMPORTED_MODULE_0___default.a.KEY = 'AIzaSyAftKNejbtH4H5BXH0-Tee8JmdgIMZDP1Q';
 google_maps__WEBPACK_IMPORTED_MODULE_0___default.a.LIBRARIES = ['places'];
+google_maps__WEBPACK_IMPORTED_MODULE_0___default.a.VERSION = '3.39';
 
 function PlacesService() {}
 

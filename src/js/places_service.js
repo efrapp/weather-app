@@ -2,6 +2,7 @@ import GoogleMapsLoader from 'google-maps';
 
 GoogleMapsLoader.KEY = 'AIzaSyAftKNejbtH4H5BXH0-Tee8JmdgIMZDP1Q';
 GoogleMapsLoader.LIBRARIES = ['places'];
+GoogleMapsLoader.VERSION = '3.39';
 
 function PlacesService() {}
 
