@@ -95,21 +95,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const weatherPromise = _js_weather_service__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.getInfo('Barranquilla');
+document.addEventListener('DOMContentLoaded', () => {
+  const weatherSearchBox = document.getElementById('weather-search-box'); 
+  const checkWeatherBtn = weatherSearchBox.querySelector('button');
 
-weatherPromise.then((weatherInfo) => weatherInfo)
-  .then((weatherInfo) => {
-    const imgUrlPms = _js_places_service__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.getCityUrl({
-      lat: weatherInfo.coord.lat,
-      lng: weatherInfo.coord.lon,
-    });
-    return imgUrlPms;
-  })
-  .then((imgUrl) => {
-    const bgImage = document.getElementById('bg-image');
-    bgImage.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${imgUrl}')`;
-  })
-  .catch(alert);
+  checkWeatherBtn.addEventListener('click', () => {
+    const cityNameInput = weatherSearchBox.querySelector('input');
+    const weatherPromise = _js_weather_service__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.getInfo(cityNameInput.value);
+
+    weatherPromise
+      .then((weatherInfo) => weatherInfo)
+      .then((weatherInfo) => {
+        const imgUrlPms = _js_places_service__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.getCityUrl({
+          lat: weatherInfo.coord.lat,
+          lng: weatherInfo.coord.lon,
+        });
+        return imgUrlPms;
+      })
+      .then((imgUrl) => {
+        const bgImage = document.getElementById('bg-image');
+        bgImage.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${imgUrl}')`;
+      })
+      .catch(alert);
+  });
+});
 
 
 /***/ }),
