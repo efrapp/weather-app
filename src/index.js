@@ -2,7 +2,7 @@ import PlacesService from './js/places_service';
 import WeatherService from './js/weather_service';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const weatherSearchBox = document.getElementById('weather-search-box'); 
+  const weatherSearchBox = document.getElementById('weather-search-box');
   const checkWeatherBtn = weatherSearchBox.querySelector('button');
 
   checkWeatherBtn.addEventListener('click', () => {
