@@ -1,18 +1,18 @@
-import PlacesService from './js/places_service';
-import WeatherService from './js/weather_service';
+import Weather from './js/weather';
 
 document.addEventListener('DOMContentLoaded', () => {
   const weatherSearchBox = document.getElementById('weather-search-box');
   const checkWeatherBtn = weatherSearchBox.querySelector('button');
+  const weatherObj = Weather();
 
   checkWeatherBtn.addEventListener('click', () => {
     const cityNameInput = weatherSearchBox.querySelector('input');
-    const weatherPromise = WeatherService.prototype.getInfo(cityNameInput.value);
+    const weatherPromise = weatherObj.getInfo(cityNameInput.value);
 
     weatherPromise
       .then((weatherInfo) => weatherInfo)
       .then((weatherInfo) => {
-        const imgUrlPms = PlacesService.prototype.getCityUrl({
+        const imgUrlPms = weatherObj.getCityUrl({
           lat: weatherInfo.coord.lat,
           lng: weatherInfo.coord.lon,
         });

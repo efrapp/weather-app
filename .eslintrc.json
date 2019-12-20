@@ -19,5 +19,6 @@
         "import/core-modules": ["google-maps"]
     },
     "rules": {
+        "prefer-object-spread": false
     }
 }
