@@ -90,7 +90,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _js_weather__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+/* harmony import */ var _js_weather__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -126,7 +126,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var google_maps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _weather_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _places_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+
+
+
+function Weather() {
+  const proto = Object.assign({}, _weather_service__WEBPACK_IMPORTED_MODULE_0__["default"].prototype, _places_service__WEBPACK_IMPORTED_MODULE_1__["default"].prototype);
+
+  return Object.create(proto);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Weather);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function WeatherService() {}
+
+const API_KEY = "d00af94a1ef0884960da78605292d459";
+
+WeatherService.prototype.getInfo = async function getInfo(city) {
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+
+  const response = await fetch(url, { mode: 'cors' });
+  const info = await response.json();
+
+  if (info.cod !== 200) {
+    throw new Error(info.message);
+  }
+  return info;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (WeatherService);
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var google_maps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
 /* harmony import */ var google_maps__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(google_maps__WEBPACK_IMPORTED_MODULE_0__);
 
 
@@ -175,7 +220,7 @@ PlacesService.prototype.getCityUrl = async function getCityUrl(coord) {
 
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root, factory) {
@@ -401,51 +446,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root
 	return GoogleMapsLoader;
 
 });
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function WeatherService() {}
-
-const API_KEY = "d00af94a1ef0884960da78605292d459";
-
-WeatherService.prototype.getInfo = async function getInfo(city) {
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
-
-  const response = await fetch(url, { mode: 'cors' });
-  const info = await response.json();
-
-  if (info.cod !== 200) {
-    throw new Error(info.message);
-  }
-  return info;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (WeatherService);
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _weather_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var _places_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
-
-
-
-function Weather() {
-  const proto = Object.assign({}, _weather_service__WEBPACK_IMPORTED_MODULE_0__["default"].prototype, _places_service__WEBPACK_IMPORTED_MODULE_1__["default"].prototype);
-
-  return Object.create(proto);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Weather);
 
 
 /***/ })
