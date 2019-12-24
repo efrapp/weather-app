@@ -245,7 +245,11 @@ PlacesService.prototype.getCityUrl = async function getCityUrl(coord) {
       const service = new google.maps.places.PlacesService(map);
       service.textSearch(request, (result, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          resolve(result[0].photos[0].getUrl());
+          if(result[0].photos){
+            resolve(result[0].photos[0].getUrl());
+          }else{
+            resolve('../src/img/default-img.jpg');
+          }
         } else {
           reject(status);
         }
