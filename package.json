@@ -4,6 +4,7 @@
   "description": "Create an app to check the weather for different cities",
   "private": true,
   "dependencies": {
+    "dayjs": "^1.8.18",
     "dotenv-webpack": "^1.7.0",
     "google-maps": "^3.3.0"
   },
