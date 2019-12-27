@@ -1,11 +1,12 @@
-import Weather from './js/weather';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
+import Weather from './js/weather';
 
 document.addEventListener('DOMContentLoaded', () => {
   const weatherSearchBox = document.getElementById('weather-search-box');
   const checkWeatherBtn = weatherSearchBox.querySelector('button');
-  const weatherObj = Weather();
+  const convertionEl = document.getElementById('convertion');
+  const weatherObj = Weather({ units: 'metric' });
 
   checkWeatherBtn.addEventListener('click', () => {
     const cityNameInput = weatherSearchBox.querySelector('input');
@@ -15,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     weatherPromise
       .then((weatherInfo) => {
-        console.log(weatherInfo);
         const placeEl = document.querySelector('.place');
         const tempEl = document.querySelector('.temperature span');
         const climateEl = document.querySelector('.weather-condition');
@@ -42,5 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
         bgImage.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${imgUrl}')`;
       })
       .catch(alert);
+  });
+
+  convertionEl.addEventListener('change', (e) => {
+    weatherObj.setUnits(e.target.value);
   });
 });

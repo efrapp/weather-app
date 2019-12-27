@@ -90,11 +90,11 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _js_weather__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var dayjs_plugin_advancedFormat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
-/* harmony import */ var dayjs_plugin_advancedFormat__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_advancedFormat__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dayjs_plugin_advancedFormat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var dayjs_plugin_advancedFormat__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_advancedFormat__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _js_weather__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
 
 
 
@@ -102,17 +102,17 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', () => {
   const weatherSearchBox = document.getElementById('weather-search-box');
   const checkWeatherBtn = weatherSearchBox.querySelector('button');
-  const weatherObj = Object(_js_weather__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  const convertionEl = document.getElementById('convertion');
+  const weatherObj = Object(_js_weather__WEBPACK_IMPORTED_MODULE_2__["default"])({ units: 'metric' });
 
   checkWeatherBtn.addEventListener('click', () => {
     const cityNameInput = weatherSearchBox.querySelector('input');
     const weatherPromise = weatherObj.getInfo(cityNameInput.value);
 
-    dayjs__WEBPACK_IMPORTED_MODULE_1___default.a.extend(dayjs_plugin_advancedFormat__WEBPACK_IMPORTED_MODULE_2___default.a);
+    dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_advancedFormat__WEBPACK_IMPORTED_MODULE_1___default.a);
 
     weatherPromise
       .then((weatherInfo) => {
-        console.log(weatherInfo);
         const placeEl = document.querySelector('.place');
         const tempEl = document.querySelector('.temperature span');
         const climateEl = document.querySelector('.weather-condition');
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tempEl.textContent = `${Math.round(weatherInfo.main.temp)}°`;
         placeEl.textContent = `${weatherInfo.name}, ${weatherInfo.sys.country}`;
         climateEl.textContent = weatherInfo.weather[0].main;
-        dateEl.textContent = dayjs__WEBPACK_IMPORTED_MODULE_1___default()(new Date()).format('Do MMM');
+        dateEl.textContent = dayjs__WEBPACK_IMPORTED_MODULE_0___default()(new Date()).format('Do MMM');
         iconEl.className = weatherObj.setIcon(weatherInfo.weather[0].id);
 
         return weatherInfo;
@@ -140,6 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(alert);
   });
+
+  convertionEl.addEventListener('change', (e) => {
+    weatherObj.setUnits(e.target.value);
+  });
 });
 
 
@@ -154,32 +158,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Weather() {
+function Weather(state) {
+  const { units } = state;
+
   const publicProto = {
     setIcon(code) {
-      if(code >= 200 && code <= 299) {
+      if (code >= 200 && code <= 299) {
         return 'wi wi-day-thunderstorm';
-      } else if(code >= 300 && code <= 399){
+      } if (code >= 300 && code <= 399) {
         return 'wi wi-hail';
-      } else if(code >= 500 && code <= 599){
+      } if (code >= 500 && code <= 599) {
         return 'wi wi-showers';
-      } else if(code >= 600 && code <= 699){
+      } if (code >= 600 && code <= 699) {
         return 'wi wi-snow';
-      } else if(code >= 700 && code <= 799){
+      } if (code >= 700 && code <= 799) {
         return 'wi wi-fog';
-      } else if(code === 800){
+      } if (code === 800) {
         return 'wi wi-day-sunny';
-      } else if(code >= 801 && code <= 899){
-        return 'wi wi-cloudy'
-      } else {
-        return 'wi wi-alien';
+      } if (code >= 801 && code <= 899) {
+        return 'wi wi-cloudy';
       }
-    }
+
+      return 'wi wi-alien';
+    },
+    setUnits(value) {
+      this.units = _weather_service__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.setUnits(value);
+
+      return this;
+    },
   };
 
   const proto = Object.assign({}, _weather_service__WEBPACK_IMPORTED_MODULE_0__["default"].prototype, _places_service__WEBPACK_IMPORTED_MODULE_1__["default"].prototype, publicProto);
+  const obj = Object.assign(Object.create(proto), { units });
 
-  return Object.create(proto);
+  obj.setUnits(units);
+
+  return obj;
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Weather);
@@ -194,9 +208,11 @@ __webpack_require__.r(__webpack_exports__);
 function WeatherService() {}
 
 const API_KEY = "d00af94a1ef0884960da78605292d459";
+const DEFAULT_UNITS = 'metric';
+let units = DEFAULT_UNITS;
 
 WeatherService.prototype.getInfo = async function getInfo(city) {
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${API_KEY}`;
 
   const response = await fetch(url, { mode: 'cors' });
   const info = await response.json();
@@ -205,6 +221,11 @@ WeatherService.prototype.getInfo = async function getInfo(city) {
     throw new Error(info.message);
   }
   return info;
+};
+
+WeatherService.prototype.setUnits = function setUnits(value) {
+  units = value || DEFAULT_UNITS;
+  return units;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (WeatherService);
@@ -245,9 +266,9 @@ PlacesService.prototype.getCityUrl = async function getCityUrl(coord) {
       const service = new google.maps.places.PlacesService(map);
       service.textSearch(request, (result, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          if(result[0].photos){
+          if (result[0].photos) {
             resolve(result[0].photos[0].getUrl());
-          }else{
+          } else {
             resolve('../src/img/default-img.jpg');
           }
         } else {
