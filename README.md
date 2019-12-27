@@ -23,6 +23,8 @@ Create an app to check the weather for different cities using the Javascript Pro
 ## Copyright
 - Background defualt photo by [Brett Zeck](https://unsplash.com/@iambrettzeck?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/world?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 - [Weather widget style](https://codepen.io/rahulgurujala/pen/WNbQQoa)
+- Icons made by [surang](https://www.flaticon.com/authors/surang) from [www.flaticon.com](https://www.flaticon.com/)
+- [Weather Icons](http://erikflowers.github.io/weather-icons/)
 
 ## Contributors
 
