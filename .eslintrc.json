@@ -16,7 +16,7 @@
         "sourceType": "module"
     },
     "settings": {
-        "import/core-modules": ["google-maps"]
+        "import/core-modules": ["google-maps", "dayjs", "dayjs/plugin/advancedFormat", "dotenv-webpack"]
     },
     "rules": {
         "prefer-object-spread": 0
