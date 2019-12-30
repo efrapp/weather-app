@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import Weather from './js/weather';
+import './css/style.css';
 
 document.addEventListener('DOMContentLoaded', () => {
   const weatherSearchBox = document.getElementById('weather-search-box');
