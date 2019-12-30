@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a9d5679a-8796-4e13-8eb0-aaaed51c8eca/deploy-status)](https://app.netlify.com/sites/el-weather/deploys)
+
 # Weather App
 Create an app to check the weather for different cities using the Javascript Promise conecpt to get information asynchronously.
 
