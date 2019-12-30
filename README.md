@@ -28,6 +28,10 @@ Create an app to check the weather for different cities using the Javascript Pro
 - Icons made by [surang](https://www.flaticon.com/authors/surang) from [www.flaticon.com](https://www.flaticon.com/)
 - [Weather Icons](http://erikflowers.github.io/weather-icons/)
 
+## Live link
+
+https://el-weather.netlify.com/
+
 ## Contributors
 
 - [Efrain Pinto](https://github.com/efrapp)
