@@ -12,9 +12,13 @@
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 6,
+        "ecmaVersion": 8,
         "sourceType": "module"
     },
+    "settings": {
+        "import/core-modules": ["google-maps", "dayjs", "dayjs/plugin/advancedFormat", "dotenv-webpack"]
+    },
     "rules": {
+        "prefer-object-spread": 0
     }
 }

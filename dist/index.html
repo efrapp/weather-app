@@ -4,9 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Template</title>
+  <title>Weather App</title>
+  <!-- <link rel="stylesheet" href="../src/css/style.css"> -->
 </head>
 <body>
+  <div id="bg-image">
+    <div id="weather-container">
+      <select id="convertion">
+        <option value="metric"> Celsius </option>
+        <option value="imperial"> Fahrenheit </option>
+      </select>
+      <div id="weather-search-box">
+        <input type="text" placeholder="Enter the city name">
+        <button> Check </button>
+      </div>
+      <div class="widget">
+        <div class="weather-icon"><i class="wi wi-alien"></i></div>
+        <div class="weather-info">
+          <div class="temperature"><span>0&deg;</span></div>
+          <div class="description">    
+            <div class="weather-condition">Weather</div>    
+            <div class="place">City, Country</div>
+          </div>
+        </div>
+        <div class="date">Date</div>
+      </div>
+    </div>
+  </div>
+  <div id="map"></div>
   <script src="main.js"></script>
 </body>
 </html>
